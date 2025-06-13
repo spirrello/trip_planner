@@ -1,19 +1,18 @@
 [tool.poetry]
-name = "trip-planner"
-authors = ["stefano", "stefano@zebedee.io"]
+name = "trip_planner"
 version = "0.1.0"
-description = ""
-readme = "README.md"
-# requires-python = ">=3.13,<3.14"
+description = "Simple AI trip Planner"
+authors = ["Stefano Pirrello <spirrello@gmail.com>"]
+license = "MIT"
 
 [tool.poetry.dependencies]
-python = "<3.14,>=3.10"
-langchain-openai = ">=0.3.23,<0.4.0"
-ollama = ">=0.5.1,<0.6.0"
-crewai = "0.130.0"
-pyowm = "3.3.0"
+python = ">=3.12,<4.0"
+crewai = "0.1.24"
 unstructured = "==0.10.25"
+pyowm = "3.3.0"
+tools = "^0.1.9"
 python-dotenv = "^1.0.0"
+# duckduckgo-search = "^1.0.0"
 
 [tool.pyright]
 #https://microsoft.github.io/pyright/#/
@@ -24,6 +23,7 @@ useLibraryCodeForTypes = true
 [tool.ruff]
 select = ['E', 'W', 'F', 'C', 'I', 'B', 'C4', 'ARG', 'SIM']
 
+
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"

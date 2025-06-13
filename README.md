@@ -9,7 +9,10 @@ https://www.youtube.com/watch?v=sPzc6hMg7So
 ```bash
 poetry install --no-root
 poetry env list
-poetry shell
+
+# Run this to activate the env
+eval $(poetry env activate)
+
 ```
 
 

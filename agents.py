@@ -1,12 +1,16 @@
-from crewai import Agent
 from textwrap import dedent
-from langchain.llms import OpenAI, Ollama
+
+from crewai import Agent
+from langchain.llms import Ollama
 from langchain_openai import ChatOpenAI
+
+from agent_tools.calculator import CalculatorTools
+from agent_tools.search import SearchTools
 
 """
 Creating Agents Cheat Sheet:
-- Think like a boss.  Work backwards from the goal and think which employee you need to hire
-  to get the job done.
+- Think like a boss.  Work backwards from the goal and think which employee you need to
+  hire to get the job done.
 - Define the Captain of the crew who orient the other agents towards the goal.
 - Define which experts the captain need to communciate with and delegate tasks to.
   Build a top down structure of the crew.
@@ -36,17 +40,17 @@ Notes:
 # This is an example of how to define custom agents.
 # You can define as many agents as you want.
 # You can also define custom tasks in tasks.py
-class CustomAgents:
+class TravelAgents:
     def __init__(self):
         self.OpenAIGPT35 = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.7)
         self.OpenAIGPT4 = ChatOpenAI(model_name="gpt-4", temperature=0.7)
         self.Ollama = Ollama(model="openhermes")
 
+    # Role is their job title
+    # Backstory is their resume
     def expert_travel_agent(self):
         return Agent(
-            # Role is their job title
             role="""Expert Travel Agent""",
-            # Backstory is their resume
             backstory=dedent(
                 """Expert in travel planning and logistics.  I have decades making
                 travel itineraries for clients."""
@@ -55,11 +59,13 @@ class CustomAgents:
                 """Create a 7-day travel itinerary with detailed per-day plans,
                 including budget, packing suggestions and safety tips."""
             ),
-            # tools=[tool_1, tool_2],
+            tools=[SearchTools.search_internet, CalculatorTools.calculate],
             verbose=True,
             llm=self.OpenAIGPT35,
         )
 
+    # Role is their job title
+    # Backstory is their resume
     def city_selection_expert(self):
         return Agent(
             role="""City Selection Expert""",
@@ -70,12 +76,13 @@ class CustomAgents:
                 """Select the best cities based on weather, season, prices and traveler
                 interests."""
             ),
-            # tools=[tool_1, tool_2],
-            allow_delegation=False,
+            tools=[SearchTools.search_internet],
             verbose=True,
             llm=self.OpenAIGPT35,
         )
 
+    # Role is their job title
+    # Backstory is their resume
     def local_tour_guide(self):
         return Agent(
             role="""Local Toour Guide""",
@@ -84,8 +91,7 @@ class CustomAgents:
                 it's attractions and customs."""
             ),
             goal=dedent("""Provide the BEST insights about the selected city."""),
-            # tools=[tool_1, tool_2],
-            allow_delegation=False,
+            tools=[SearchTools.search_internet],
             verbose=True,
             llm=self.OpenAIGPT35,
         )
