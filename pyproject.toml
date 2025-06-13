@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "trip_planner"
+version = "0.1.0"
+description = "Simple AI trip Planner"
+authors = ["Stefano Pirrello <spirrello@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = ">=3.12,<4.0"
+crewai = "0.1.24"
+unstructured = "==0.10.25"
+pyowm = "3.3.0"
+tools = "^0.1.9"
+python-dotenv = "^1.0.0"
+# duckduckgo-search = "^1.0.0"
+
+[tool.pyright]
+#https://microsoft.github.io/pyright/#/
+exclude = [".cache"]
+useLibraryCodeForTypes = true
+
+
+[tool.ruff]
+select = ['E', 'W', 'F', 'C', 'I', 'B', 'C4', 'ARG', 'SIM']
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
