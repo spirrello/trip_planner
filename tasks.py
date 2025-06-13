@@ -1,6 +1,7 @@
 # To know more about the Task class, visit: https://docs.crewai.com/concepts/tasks
-from crewai import Task
 from textwrap import dedent
+
+from crewai import Task
 
 """
 Creating Tasks Cheat Sheet:
@@ -28,7 +29,8 @@ Key Steps for Task Creation:
 
 4. Task Description Template:
 - Use this template as a guide to define each task in your CrewAI application.
-- This template helps ensure that each task is clearly defined, actionable and aligned with the specific.
+- This template helps ensure that each task is clearly defined, actionable and aligned
+    with the specific.
 
 
 Template:
@@ -76,7 +78,8 @@ class TravelTasks:
     def __tip_section(self):
         return "If you do your BEST WORK, I'll give you a $10,000 commission!"
 
-    # When definiting the description, it is important to be clear on what the final output should be.
+    # When definiting the description, it is important to be clear on what the final
+    # output should be.
     def plan_itinerary(self, agent, travel_plan: TravelDetails):
         return Task(
             description=dedent(
